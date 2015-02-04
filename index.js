@@ -6,16 +6,12 @@
     var config = require('config'),
         crc = require('crc'),
         storage;
-        if (config.cache.storage == 'redis') {
-            var redis = require('then-redis');
-            storage = redis.createClient('tcp://localhost:6379');
-        } else {
+
             var qMemcached = require('memcache-promise');
             storage = new qMemcached(
                 config.memcached.servers,
                 config.memcached.options
             );
-        }
 
     /**
      * Cacher utils
