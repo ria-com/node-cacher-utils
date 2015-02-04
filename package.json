@@ -10,7 +10,9 @@
     "test": "./test"
   },
   "dependencies": {
+    "config": "*",
     "memcache-promise": "*",
+    "crc": "*",
     "then-redis": "*"
   },
   "devDependencies": {
