@@ -1,6 +1,6 @@
 {
   "name": "cacher-utils",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Small utils for co-cacher & cacher-promise",
   "author": {
     "name": "Oleg Cherniy",
@@ -11,12 +11,13 @@
   },
   "dependencies": {
     "config": "*",
-    "memcache-promise": "*",
     "crc": "*",
+    "memcache-promise": "*",
     "then-redis": "*"
   },
   "devDependencies": {
-    "jasmine-node": "*"
+    "jasmine-node": "*",
+    "co": "*"
   },
   "scripts": {
     "start": "node --harmony index.js",

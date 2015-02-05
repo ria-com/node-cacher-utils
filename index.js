@@ -5,18 +5,19 @@
     "use strict";
     var config = require('config'),
         crc = require('crc'),
-        storage;
-
-            var qMemcached = require('memcache-promise');
-            storage = new qMemcached(
-                config.memcached.servers,
-                config.memcached.options
-            );
+        defaultAdapter = 'memcached';
 
     /**
      * Cacher utils
      */
     module.exports = {
+        /**
+         * keyMaker
+         * @param {string} name
+         * @param {string} salt
+         * @param {Array} args
+         * @return {string}
+         */
         keyMaker: function keyMaker (name , salt, args) {
             var strArgs = [];
             args.forEach(function(arg) {
@@ -32,46 +33,18 @@
             }
             return config.cache.key.prefix + name + salt + suffix;
         },
-        getCacheStorage: function getCacheStorage () {
-            return storage;
+        /**
+         * Get Cache Storage engine
+         * @param {string} adapter
+         * @return {*}
+         */
+        getCacheStorage: function(adapter) {
+            adapter = adapter || config.cache.storage;
+            if (!(adapter in {'memcached':true,'redis':true})) {
+                adapter = defaultAdapter
+            }
+            return require('./adapters/'+adapter);
         }
     }
 
 }());
-
-
-
-
-
-
-
-
-/*        function (myFunction, args, options) {
- if (typeof options == 'object') {
- } else {
- var cacheTime = options;
- options = {};
- options.cacheTime = cacheTime;
- }
- var time = options.cacheTime || config.cache.defaultTime;
- var salt = options.salt || '';
- var key = keyMaker(myFunction.name, salt, args);
- var deferred = Q.defer();
-
- memcached.get(key).then(function (value) {
- if (typeof value != 'undefined' ) {
- deferred.resolve(value);
- } else {
- myFunction.apply(myFunction,args).done(function (value) {
- memcached.set(key,value,time).done();
- deferred.resolve(value);
- },
- deferred.reject
- )
- }
- },
- deferred.reject
- );
- return deferred.promise;
-
- }*/
