@@ -23,7 +23,7 @@
             args.forEach(function(arg) {
                 var newArg = arg;
                 if (typeof arg == 'object' || arg == 'array') {
-                    newArg = JSON.stringify(arg);
+                    newArg = encodeURIComponent(JSON.stringify(arg));
                 }
                 strArgs.push(newArg);
             });
