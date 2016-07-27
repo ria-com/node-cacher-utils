@@ -1,7 +1,7 @@
 node-cacher-utils
 ===================
 
-Part of co-cacher & cacher-promise 
+Part of [co-cacher](https://github.com/ria-com/node-co-cacher) & [cacher-promise](https://github.com/ria-com/node-cacher-promise) 
 
 
 example
