@@ -1,6 +1,6 @@
 {
   "name": "cacher-utils",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Small utils for co-cacher & cacher-promise",
   "author": {
     "name": "Oleg Cherniy",
@@ -12,7 +12,7 @@
   "dependencies": {
     "config": "*",
     "crc": "*",
-    "memcache-promise": "git+https://github.com/ria-com/memcache-promise.git#master",
+    "memcache-promise": "*",
     "then-redis": "*"
   },
   "devDependencies": {
